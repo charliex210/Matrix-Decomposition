@@ -23,7 +23,6 @@ def GivensReduction(A,precision=1e-8):
     i = 0; j = 0
     while j < min(m,n):
         
-        P_ = np.identity(m)
         for i in range(j+1,m):
             Pij = np.identity(m)
     
@@ -35,8 +34,6 @@ def GivensReduction(A,precision=1e-8):
             Pij[i,i] = c
     
             T = np.dot(Pij,T)
-            print Pij
-            P_ = np.dot(P_,Pij.T).T
             P.append(Pij)
     
         j += 1
