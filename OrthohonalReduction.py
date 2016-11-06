@@ -13,12 +13,12 @@ def norm(x,p=2):
     return np.sum(np.array(x)**p)**(1./p)
 
 def GivensReduction(A,precision=1e-8):
-    """orthohonal reduction on A using Givens reduction (plane rotation)"""
+    """orthohonal reduction of A using Givens reduction (plane rotation)"""
     
     A = np.matrix(A)
     m,n = A.shape
     T = A.copy()
-    P = {}
+    P = []
     
     i = 0; j = 0
     while j < min(m,n):
@@ -33,11 +33,12 @@ def GivensReduction(A,precision=1e-8):
             Pij[j,i] = s
             Pij[i,j] = -s
             Pij[i,i] = c
-            
-            T = np.dot(Pij,T)
-            P_ = np.dot(P_,Pij).T
     
-        P[j] = P_
+            T = np.dot(Pij,T)
+            print Pij
+            P_ = np.dot(P_,Pij.T).T
+            P.append(Pij)
+    
         j += 1
     
     Q = np.identity(m)
@@ -45,8 +46,8 @@ def GivensReduction(A,precision=1e-8):
         Q = np.dot(Q,P[k])
     
     if precision:
-        Q[Q<precision] = 0
-        T[T<precision] = 0
+        Q[abs(Q)<precision] = 0
+          T[abs(T)<precision] = 0
         
     return Q,T
 
