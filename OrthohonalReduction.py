@@ -47,7 +47,7 @@ def GivensReduction(A,precision=1e-8):
     
     if precision:
         Q[abs(Q)<precision] = 0
-          T[abs(T)<precision] = 0
+        T[abs(T)<precision] = 0
         
     return Q,T
 
