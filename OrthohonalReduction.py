@@ -14,7 +14,7 @@ def norm(x,p=2):
     return np.sum(np.array(x)**p)**(1./p)
 
 def GivensReduction(A,precision=1e-8):
-    """orthohonal reduction of A using Givens reduction (plane rotation)"""
+    """orthohonal reduction on A using Givens reduction (plane rotation)"""
     
     A = np.matrix(A)
     m,n = A.shape
@@ -53,8 +53,8 @@ def GivensReduction(A,precision=1e-8):
 
 if __name__ == '__main__':
     A = np.matrix([[0,-20,-14],
-              [3,27,-4],
-              [4,11,-2]])
+                   [3,27,-4],
+                   [4,11,-2]])
     
     Q,T=GivensReduction(A)
     print "Q: \n", Q
